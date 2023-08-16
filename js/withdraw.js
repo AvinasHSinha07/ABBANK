@@ -1,6 +1,7 @@
 // console.log("withdraw")
 
 document.getElementById("withdrawBtn").addEventListener("click", function () {
+   
   // console.log('button clicked')
   const withdrawField = document.getElementById("withdrawField");
   const withdrawAmount = parseFloat(withdrawField.value);
@@ -8,18 +9,28 @@ document.getElementById("withdrawBtn").addEventListener("click", function () {
   const withdrawInitial = document.getElementById("withdrawTotal");
   const withdrawTotal = withdrawInitial.innerText;
   const prevWithdraw = parseFloat(withdrawTotal);
-
-  const currentTotal = parseFloat(withdrawAmount) + parseFloat(withdrawTotal);
-
-  withdrawInitial.innerText = currentTotal;
+  
 
   const totalBalance = document.getElementById("totalBalance");
 
   const previousBalance = parseFloat(totalBalance.innerText);
 
+  console.log(previousBalance)
+  withdrawField.value = "";
+    if(withdrawAmount > previousBalance){
+        alert('low balance')
+        return
+    }
+
+  const currentTotal = parseFloat(withdrawAmount) + parseFloat(withdrawTotal);
+
+  withdrawInitial.innerText = currentTotal;
+
+  
+
   const newBalance = previousBalance - withdrawAmount;
 
   totalBalance.innerText = newBalance;
 
-  withdrawField.value = "";
+
 });
